@@ -1,0 +1,44 @@
+<div class="row">
+  <div class ="col s12">
+    <h1>Manage your books!</h1>
+  </div>
+</div>
+
+<div class = "row" *ngIf="books?.length  > 0 then bookTable else noBooks"></div>
+
+<ng-template #bookTable>
+  <div class="col s12">
+    <table>
+      <thead>
+        <tr>
+            <th>Cover</th>
+            <th>Title</th>
+            <th>Autor</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+      </thead>
+
+
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td>
+              <img [src]="book?.coverUrl" alt="" class="circle">
+            </td>
+            <td>{{book?.title}}</td>
+            <td>{{book?.author}}</td>
+            <td>
+              <i class="material-icons">edit</i>
+            </td>
+            <td>
+              <i class="material-icons" (click)="deleteBook(book?.id)">delete</i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</ng-template>
+
+<ng-template #noBooks>
+  <h5>Your don't have any Books</h5>
+</ng-template>
